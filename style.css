@@ -1,0 +1,183 @@
+body {
+    background-color: green;
+}
+
+#caminho1 {
+    width: 300px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 200px;
+    left: 50px;
+}
+
+#caminho2 {
+    width: 50px;
+    height: 150px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 70px;
+    left: 300px;
+}
+
+#caminho3 {
+    width: 250px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 70px;
+    left: 300px;
+}
+
+#caminho4 {
+    width: 50px;
+    height: 400px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 70px;
+    left: 540px;
+}
+
+#caminho5 {
+    width: 210px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 420px;
+    left: 380px;
+}
+
+#caminho6 {
+    width: 50px;
+    height: 150px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 320px;
+    left: 340px;
+}
+
+#caminho7 {
+    width: 240px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 320px;
+    left: 150px;
+}
+
+#caminho8 {
+    width: 50px;
+    height: 260px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 320px;
+    left: 150px;
+}
+
+#caminho9 {
+    width: 550px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 540px;
+    left: 150px;
+}
+
+#caminho10 {
+    width: 50px;
+    height: 250px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 340px;
+    left: 680px;
+}
+
+#caminho11 {
+    width: 250px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 340px;
+    left: 680px;
+}
+
+#caminho12 {
+    width: 50px;
+    height: 250px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 340px;
+    left: 880px;
+}
+
+#caminho13 {
+    width: 250px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 540px;
+    left: 880px;
+}
+
+#caminho14 {
+    width: 50px;
+    height: 200px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 390px;
+    left: 1100px;
+}
+
+#caminho15 {
+    width: 200px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 390px;
+    left: 1100px;
+}
+
+#caminho16 {
+    width: 50px;
+    height: 250px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 190px;
+    left: 1250px;
+}
+
+#caminho17 {
+    width: 590px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 190px;
+    left: 710px;
+}
+
+#caminho18 {
+    width: 50px;
+    height: 200px;
+    background-color: gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 40px;
+    left: 700px;
+}
