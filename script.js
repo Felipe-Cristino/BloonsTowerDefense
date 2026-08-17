@@ -28,10 +28,10 @@ class Atirador extends Personagem {
         this.desenhar();
         this.eu = document.getElementById(this.id);
         personagemColide.push({
-            xMin:this.px - (this.tamx / 2),
-            xMax:this.px + (this.tamx / 2),
-            yMin:this.py - (this.tamy / 2),
-            yMax:this.py + (this.tamy / 2)
+            xMin: this.px - (this.tamx / 2),
+            xMax: this.px + (this.tamx / 2),
+            yMin: this.py - (this.tamy / 2),
+            yMax: this.py + (this.tamy / 2)
         })
     }
 
@@ -138,13 +138,7 @@ botao.addEventListener("click", () => {
     balao1 = new Baloes(1);
 })
 
-const removeSelecionado = () => {
-    document.querySelectorAll(".selecionado").forEach((sel) => {
-        sel.classList.remove("selecionado");
-    })
-}
-
-function selecionarBotao(botao, cor) {
+function selecionarBotao(botao) {
     const jaSelecionado = botao.classList.contains("selecionado");
 
     // Remove a seleção de todos
@@ -157,34 +151,36 @@ function selecionarBotao(botao, cor) {
         botao.classList.add("selecionado");
     }
 
-    if (botao.classList.contains("selecionado")) {
-        document.addEventListener("click", (event)=>{
-            detectarClique(cor, event)
-        })
-    } else {
-       document.removeEventListener("click", (event)=>{
-            detectarClique(cor, event)
-        })
-    }
+    // if (botao.classList.contains("selecionado")) {
+    //     document.addEventListener("click", (event)=>{
+    //         detectarClique(event, cor)})
+    // }
 }
 
-arma1.addEventListener("click", () => selecionarBotao(arma1, "red"));
-arma2.addEventListener("click", () => selecionarBotao(arma2, "blue"));
-arma3.addEventListener("click", () => selecionarBotao(arma3, "brown"));
-arma4.addEventListener("click", () => selecionarBotao(arma4, "yellow"));
-arma5.addEventListener("click", () => selecionarBotao(arma5, "green"));
-arma6.addEventListener("click", () => selecionarBotao(arma6, "orange"));
+arma1.addEventListener("click", () => selecionarBotao(arma1));
+arma2.addEventListener("click", () => selecionarBotao(arma2));
+arma3.addEventListener("click", () => selecionarBotao(arma3));
+arma4.addEventListener("click", () => selecionarBotao(arma4));
+arma5.addEventListener("click", () => selecionarBotao(arma5));
+arma6.addEventListener("click", () => selecionarBotao(arma6));
 
-const detectarClique = (cor, event) => {
+const detectarClique = (event, cor) => {
     const x = event.clientX;
     const y = event.clientY;
 
     if (!colidiu(x, y)) {
         botao2.innerHTML = "X: " + x + " Y: " + y;
-        console.log(personagemColide);
         const atirador1 = new Atirador(x, y, cor);
     }
 };
+
+document.addEventListener("click", (event) => {
+    const selecionado = document.querySelector(".selecionado");
+    if (selecionado) {
+        const cor = getComputedStyle(selecionado).backgroundColor;
+        detectarClique(event, cor);
+    }
+})
 
 const obstaculo1 = {
     xMin: 0,
