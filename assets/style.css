@@ -33,6 +33,19 @@ body::before {
     cursor: pointer;
 }
 
+#botao2 {
+    width: 300px;
+    height: 50px;
+    font-weight: bold;
+    background-color:white;
+    color: black;
+    margin-top: 150px;
+    margin-left: 50px;
+    text-align: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
 #menu-itens {
     width: 250px;
     height: 100%;
@@ -67,6 +80,12 @@ body::before {
     cursor: pointer;
 }
 
+#arma1:hover, #arma2:hover, #arma3:hover,
+#arma4:hover, #arma5:hover, #arma6:hover {
+    width: 70px;
+    height: 70px;
+} 
+
 #arma1 {
     background-color: red;
 }
@@ -94,4 +113,18 @@ body::before {
 .balao {
     position: absolute;
     border-radius: 50%;
+}
+
+.atirador {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.selecionado {
+    border: 3px solid #1b9ade;
+    box-shadow:
+        0 0 5px #1b9ade,
+        0 0 10px #1b9ade,
+        0 0 20px #1b9ade,
+        0 0 40px #1b9ade;
 }
