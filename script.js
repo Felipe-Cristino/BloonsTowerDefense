@@ -8,6 +8,9 @@ const arma4 = document.getElementById("arma4")
 const arma5 = document.getElementById("arma5")
 const arma6 = document.getElementById("arma6")
 const personagemColide = [];
+const atiradores = [];
+const baloes = [];
+let atirador1 = null;
 
 class Personagem {
     constructor(px, py) {
@@ -19,7 +22,7 @@ class Personagem {
 class Atirador extends Personagem {
     constructor(px, py, cor) {
         super(px, py);
-        this.range = 20;
+        this.range = 120;
         this.velAtaque = 5;
         this.cor = cor;
         this.tamx = 50;
@@ -33,6 +36,16 @@ class Atirador extends Personagem {
             yMin: this.py - (this.tamy / 2),
             yMax: this.py + (this.tamy / 2)
         })
+
+        this.eu.addEventListener("mouseenter", () => {
+            this.eu.style.boxShadow = `0 0 0 ${this.range - this.tamx}px
+             rgba(255, 255, 255, 0.4)`;
+        });
+
+        this.eu.addEventListener("mouseleave", () => {
+            this.eu.style.boxShadow = "none";
+        });
+        atiradores.push(this);
     }
 
     desenhar() {
@@ -45,8 +58,35 @@ class Atirador extends Personagem {
         body.appendChild(div);
     }
 
-    atirar() {
+    verificarBaloes(baloes) {
+        return baloes.some(balao => {
 
+            // Centro do balão
+            const balaoX = balao.px + balao.tamx / 2;
+            const balaoY = balao.py + balao.tamy / 2;
+
+            // Ponto do atirador mais próximo do balão
+            const pontoX = Math.max(
+                this.px,
+                Math.min(balaoX, this.px + this.tamx)
+            );
+
+            const pontoY = Math.max(
+                this.py,
+                Math.min(balaoY, this.py + this.tamy)
+            );
+
+            // Distância entre o balão e o ponto mais próximo
+            const dx = balaoX - pontoX;
+            const dy = balaoY - pontoY;
+
+            const distancia = Math.sqrt(dx * dx + dy * dy);
+
+            return distancia <= this.range;
+        });
+    }
+
+    atirar() {
     }
 }
 
@@ -71,6 +111,7 @@ class Baloes {
         this.desenhar();
         this.controle = setInterval(() => this.controlar(), 10);
         this.eu = document.getElementById(this.id);
+        baloes.push(this);
     }
 
     desenhar() {
@@ -150,11 +191,6 @@ function selecionarBotao(botao) {
     if (!jaSelecionado) {
         botao.classList.add("selecionado");
     }
-
-    // if (botao.classList.contains("selecionado")) {
-    //     document.addEventListener("click", (event)=>{
-    //         detectarClique(event, cor)})
-    // }
 }
 
 arma1.addEventListener("click", () => selecionarBotao(arma1));
@@ -169,8 +205,7 @@ const detectarClique = (event, cor) => {
     const y = event.clientY;
 
     if (!colidiu(x, y)) {
-        botao2.innerHTML = "X: " + x + " Y: " + y;
-        const atirador1 = new Atirador(x, y, cor);
+        atirador1 = new Atirador(x, y, cor);
     }
 };
 
@@ -278,3 +313,10 @@ const colidiu = (x, y) => {
 
     return false;
 };
+
+setInterval(() => {
+    const baloesNoRange = atiradores.some((atirador) => {
+        return atirador.verificarBaloes(baloes);
+    });
+    botao2.innerHTML = baloesNoRange;
+}, 1000)
