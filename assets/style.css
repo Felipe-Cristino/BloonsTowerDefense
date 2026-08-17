@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    height: 100%;
+    position: absolute;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100% - 250px);
+    height: 100%;
+
+    background-image: url("./imagens/background-fase01.jpeg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+}
+
+#botao {
+    width: 300px;
+    height: 50px;
+    font-weight: bold;
+    background-color:black;
+    color: white;
+    margin-top: 50px;
+    margin-left: 50px;
+    text-align: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#menu-itens {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color:rgb(199, 199, 240);
+}
+
+#armas {
+    width: 250px;
+    height: auto;
+    background-color: gray;
+    position: absolute;
+    top: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.arma {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#arma1, #arma2, #arma3,
+#arma4, #arma5, #arma6 {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#arma1 {
+    background-color: red;
+}
+
+#arma2 {
+    background-color: blue;
+}
+
+#arma3 {
+    background-color: brown;
+}
+
+#arma4 {
+    background-color: yellow;
+}
+
+#arma5 {
+    background-color: green;
+}
+
+#arma6 {
+    background-color: orange;
+}
+
+.balao {
+    position: absolute;
+    border-radius: 50%;
+}
