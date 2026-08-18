@@ -13,7 +13,7 @@ body::before {
     height: 100%;
 
     background: var(--fundo);
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 

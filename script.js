@@ -11,7 +11,7 @@ const personagemColide = [];
 const atiradores = [];
 const baloes = [];
 let atirador1 = null;
-let fase = 6;
+let fase = 11;
 
 class Personagem {
     constructor(px, py) {
@@ -106,10 +106,10 @@ class Baloes {
         this.vel = velBaloes[vidas - 1];
         this.px = 0;
         if(fase <= 5) {
-            this.py = 46;
+            this.py = 35;
         }
         else if(fase >= 6 && fase <= 10) {
-            this.py = 268;
+            this.py = 264;
         }
         this.dirx = 1;
         this.diry = 0;
@@ -130,89 +130,89 @@ class Baloes {
     }
 
     controleBordasFase01() {
-        if (this.py > 36 && this.py < 56 && this.px > 350 && this.px < 360) {
+        if (this.py > 30 && this.py < 40 && this.px > 346 && this.px < 356) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 340 && this.px < 360 && this.py > 223 && this.py < 230) {
+        if (this.px > 346 && this.px < 356 && this.py > 221 && this.py < 231) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > 210 && this.py < 230 && this.px > 660 && this.px < 670) {
+        if (this.py > 210 && this.py < 230 && this.px > 665 && this.px < 675) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 647 && this.px < 667 && this.py > 380 && this.py < 390) {
+        if (this.px > 665 && this.px < 675 && this.py > 382 && this.py < 392) {
             this.dirx = -1;
             this.diry = 0;
         }
 
-        if (this.py > 380 && this.py < 390 && this.px > 240 && this.px < 250) {
+        if (this.py > 382 && this.py < 392 && this.px > 228 && this.px < 238) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 240 && this.px < 250 && this.py > 537 && this.py < 547) {
+        if (this.px > 228 && this.px < 238 && this.py > 545 && this.py < 555) {
             this.dirx = -1;
             this.diry = 0;
         }
     }
 
     controleBordasFase06() {
-        if (this.py > 263 && this.py < 273 && this.px > 133 && this.px < 143) {
+        if (this.py > 259 && this.py < 269 && this.px > 115 && this.px < 125) {
             this.dirx = 0;
             this.diry = -1;
         }
 
-        if (this.px > 133 && this.px < 143 && this.py > 7 && this.py < 17) {
+        if (this.px > 115 && this.px < 125 && this.py > -5 && this.py < 5) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > 7 && this.py < 17 && this.px > 290 && this.px < 300) {
+        if (this.py > -5 && this.py < 5 && this.px > 280 && this.px < 290) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 290 && this.px < 300 && this.py > 320 && this.py < 330) {
+        if (this.px > 280 && this.px < 290 && this.py > 320 && this.py < 330) {
             this.dirx = -1;
             this.diry = 0;
         }
 
-        if (this.py > 320 && this.py < 330 && this.px > 170 && this.px < 180) {
+        if (this.py > 320 && this.py < 330 && this.px > 155 && this.px < 165) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 170 && this.px < 180 && this.py > 567 && this.py < 577) {
+        if (this.px > 155 && this.px < 165 && this.py > 575 && this.py < 585) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > 567 && this.py < 577 && this.px > 702 && this.px < 712) {
+        if (this.py > 575 && this.py < 585 && this.px > 710 && this.px < 720) {
             this.dirx = 0;
             this.diry = -1;
         }
 
-        if (this.px > 702 && this.px < 712 && this.py > 458 && this.py < 468) {
+        if (this.px > 710 && this.px < 720 && this.py > 462 && this.py < 472) {
             this.dirx = -1;
             this.diry = 0;
         }
 
-        if (this.py > 458 && this.py < 468 && this.px > 400 && this.px < 410) {
+        if (this.py > 462 && this.py < 472 && this.px > 390 && this.px < 400) {
             this.dirx = 0;
             this.diry = -1;
         }
 
-        if (this.px > 400 && this.px < 410 && this.py > 305 && this.py < 315) {
+        if (this.px > 390 && this.px < 400 && this.py > 305 && this.py < 315) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > 305 && this.py < 315 && this.px > 710 && this.px < 720) {
+        if (this.py > 305 && this.py < 315 && this.px > 717 && this.px < 727) {
             this.dirx = 0;
             this.diry = -1;
         }
@@ -250,14 +250,28 @@ const imagemFases = () => {
     if (fase <= 5) {
         document.body.style.setProperty(
             "--fundo",
-            "url('./imagens/background-fase01.jpeg')"
+            "url('./imagens/background-mapa01.jpeg')"
         );
     }
 
     if (fase >= 6 && fase <= 10) {
         document.body.style.setProperty(
             "--fundo",
-            "url('./imagens/background-fase06.jpeg')"
+            "url('./imagens/background-mapa02.jpeg')"
+        );
+    }
+
+    if (fase >= 11 && fase <= 15) {
+        document.body.style.setProperty(
+            "--fundo",
+            "url('./imagens/background-mapa03.jpeg')"
+        );
+    }
+
+    if (fase >= 16 && fase <= 20) {
+        document.body.style.setProperty(
+            "--fundo",
+            "url('./imagens/background-mapa04.jpeg')"
         );
     }
 }
@@ -318,59 +332,67 @@ document.addEventListener("click", (event) => {
 const obsFase01 = () => {
     const obstaculo1 = {
         xMin: 0,
-        xMax: 396,
-        yMin: 43,
-        yMax: 90
+        xMax: 388,
+        yMin: 30,
+        yMax: 81
     }
 
     const obstaculo2 = {
-        xMin: 345,
-        xMax: 396,
-        yMin: 43,
-        yMax: 270
+        xMin: 336,
+        xMax: 388,
+        yMin: 30,
+        yMax: 267
     }
 
     const obstaculo3 = {
-        xMin: 345,
-        xMax: 396,
-        yMin: 220,
-        yMax: 272
+        xMin: 336,
+        xMax: 711,
+        yMin: 215,
+        yMax: 267
     }
 
     const obstaculo4 = {
-        xMin: 345,
-        xMax: 706,
-        yMin: 220,
-        yMax: 272
+        xMin: 658,
+        xMax: 711,
+        yMin: 214,
+        yMax: 430
     }
 
     const obstaculo5 = {
-        xMin: 654,
-        xMax: 706,
-        yMin: 220,
-        yMax: 427
+        xMin: 226,
+        xMax: 711,
+        yMin: 380,
+        yMax: 430
     }
 
     const obstaculo6 = {
-        xMin: 240,
-        xMax: 291,
-        yMin: 378,
-        yMax: 582
+        xMin: 226,
+        xMax: 280,
+        yMin: 381,
+        yMax: 592
     }
 
     const obstaculo7 = {
         xMin: 0,
-        xMax: 291,
-        yMin: 533,
-        yMax: 582
+        xMax: 280,
+        yMin: 539,
+        yMax: 593
     }
 
     const obstaculo8 = {
-        xMin: 1122,
+        xMin: 1146,
         xMax: 1395,
         yMin: 0,
-        yMax: 700
+        yMax: 690
     }
+
+    const obstaculo9 = {
+        xMin: 0,
+        xMax: 220,
+        yMin: 112,
+        yMax: 381
+    }
+
 
     const obstaculos = [
         obstaculo1,
@@ -380,7 +402,8 @@ const obsFase01 = () => {
         obstaculo5,
         obstaculo6,
         obstaculo7,
-        obstaculo8
+        obstaculo8,
+        obstaculo9
     ];
 
     return obstaculos;
@@ -389,93 +412,114 @@ const obsFase01 = () => {
 const obsFase06 = () => {
     const obstaculo1 = {
         xMin: 0,
-        xMax: 174,
-        yMin: 264,
-        yMax: 313
+        xMax: 160,
+        yMin: 260,
+        yMax: 311
     }
 
     const obstaculo2 = {
-        xMin: 125,
-        xMax: 174,
-        yMin: 14,
-        yMax: 313
+        xMin: 108,
+        xMax: 159,
+        yMin: 0,
+        yMax: 311
     }
 
     const obstaculo3 = {
         xMin: 125,
         xMax: 332,
-        yMin: 14,
-        yMax: 63
+        yMin: 0,
+        yMax: 51
     }
 
     const obstaculo4 = {
-        xMin: 283,
-        xMax: 332,
-        yMin: 14,
-        yMax: 366
+        xMin: 271,
+        xMax: 323,
+        yMin: 0,
+        yMax: 368
     }
 
     const obstaculo5 = {
-        xMin: 171,
-        xMax: 332,
-        yMin: 317,
-        yMax: 366
+        xMin: 155,
+        xMax: 323,
+        yMin: 316,
+        yMax: 368
     }
 
     const obstaculo6 = {
-        xMin: 171,
-        xMax: 222,
-        yMin: 317,
-        yMax: 612
+        xMin: 155,
+        xMax: 208,
+        yMin: 318,
+        yMax: 623
     }
 
     const obstaculo7 = {
-        xMin: 171,
-        xMax: 745,
-        yMin: 564,
-        yMax: 612
+        xMin: 155,
+        xMax: 751,
+        yMin: 573,
+        yMax: 623
     }
 
     const obstaculo8 = {
-        xMin: 696,
-        xMax: 745,
-        yMin: 464,
-        yMax: 612
+        xMin: 700,
+        xMax: 752,
+        yMin: 468,
+        yMax: 624
     }
 
     const obstaculo9 = {
-        xMin: 401,
-        xMax: 745,
-        yMin: 464,
-        yMax: 513
+        xMin: 394,
+        xMax: 752,
+        yMin: 468,
+        yMax: 519
     }
 
     const obstaculo10 = {
-        xMin: 401,
-        xMax: 450,
-        yMin: 308,
-        yMax: 513
+        xMin: 394,
+        xMax: 445,
+        yMin: 306,
+        yMax: 519
     }
 
     const obstaculo11 = {
-        xMin: 401,
-        xMax: 752,
-        yMin: 308,
-        yMax: 359
+        xMin: 395,
+        xMax: 760,
+        yMin: 307,
+        yMax: 360
     }
 
     const obstaculo12 = {
-        xMin: 703,
-        xMax: 752,
-        yMin: 14,
-        yMax: 359
+        xMin: 708,
+        xMax: 760,
+        yMin: 0,
+        yMax: 360
     }
 
     const obstaculo13 = {
-        xMin: 1122,
+        xMin: 1146,
         xMax: 1395,
         yMin: 0,
-        yMax: 700
+        yMax: 690
+    }
+
+    const obstaculo14 = {
+        xMin: 208,
+        xMax: 325,
+        yMin: 467,
+        yMax: 572
+    }
+
+    const obstaculo15 = {
+        xMin: 56,
+        xMax: 108,
+        yMin: 160,
+        yMax: 260
+    }
+
+     const obstaculo16 = {
+        xMin: 632,
+        xMax: 708,
+        yMin: 195,
+        yMax: 307
     }
 
      const obstaculos = [
@@ -491,7 +535,10 @@ const obsFase06 = () => {
         obstaculo10,
         obstaculo11,
         obstaculo12,
-        obstaculo13
+        obstaculo13,
+        obstaculo14,
+        obstaculo15,
+        obstaculo16
     ];
 
     return obstaculos;
