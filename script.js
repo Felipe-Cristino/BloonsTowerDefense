@@ -11,6 +11,7 @@ const personagemColide = [];
 const atiradores = [];
 const baloes = [];
 let atirador1 = null;
+let fase = 6;
 
 class Personagem {
     constructor(px, py) {
@@ -104,7 +105,12 @@ class Baloes {
         this.tamy = arrayTamanhoBaloesy[vidas - 1];
         this.vel = velBaloes[vidas - 1];
         this.px = 0;
-        this.py = 46;
+        if(fase <= 5) {
+            this.py = 46;
+        }
+        else if(fase >= 6 && fase <= 10) {
+            this.py = 268;
+        }
         this.dirx = 1;
         this.diry = 0;
         this.id = Date.now() + "_" + Math.floor(Math.random() * 1000000000);
@@ -123,7 +129,7 @@ class Baloes {
         body.appendChild(div);
     }
 
-    controle_bordas() {
+    controleBordasFase01() {
         if (this.py > 36 && this.py < 56 && this.px > 350 && this.px < 360) {
             this.dirx = 0;
             this.diry = 1;
@@ -155,6 +161,73 @@ class Baloes {
         }
     }
 
+    controleBordasFase06() {
+        if (this.py > 263 && this.py < 273 && this.px > 133 && this.px < 143) {
+            this.dirx = 0;
+            this.diry = -1;
+        }
+
+        if (this.px > 133 && this.px < 143 && this.py > 7 && this.py < 17) {
+            this.dirx = 1;
+            this.diry = 0;
+        }
+
+        if (this.py > 7 && this.py < 17 && this.px > 290 && this.px < 300) {
+            this.dirx = 0;
+            this.diry = 1;
+        }
+
+        if (this.px > 290 && this.px < 300 && this.py > 320 && this.py < 330) {
+            this.dirx = -1;
+            this.diry = 0;
+        }
+
+        if (this.py > 320 && this.py < 330 && this.px > 170 && this.px < 180) {
+            this.dirx = 0;
+            this.diry = 1;
+        }
+
+        if (this.px > 170 && this.px < 180 && this.py > 567 && this.py < 577) {
+            this.dirx = 1;
+            this.diry = 0;
+        }
+
+        if (this.py > 567 && this.py < 577 && this.px > 702 && this.px < 712) {
+            this.dirx = 0;
+            this.diry = -1;
+        }
+
+        if (this.px > 702 && this.px < 712 && this.py > 458 && this.py < 468) {
+            this.dirx = -1;
+            this.diry = 0;
+        }
+
+        if (this.py > 458 && this.py < 468 && this.px > 400 && this.px < 410) {
+            this.dirx = 0;
+            this.diry = -1;
+        }
+
+        if (this.px > 400 && this.px < 410 && this.py > 305 && this.py < 315) {
+            this.dirx = 1;
+            this.diry = 0;
+        }
+
+        if (this.py > 305 && this.py < 315 && this.px > 710 && this.px < 720) {
+            this.dirx = 0;
+            this.diry = -1;
+        }
+    }
+
+    controle_bordas() {
+        if (fase <= 5) {
+            this.controleBordasFase01();
+        }
+
+        if (fase >= 6 && fase <= 10) {
+            this.controleBordasFase06();
+        }
+    }
+
     controlar() {
         this.controle_bordas()
         this.px += this.dirx * this.vel;
@@ -162,7 +235,7 @@ class Baloes {
         this.eu.setAttribute("style", `left:${this.px}px;top:${this.py}px;
         width:${this.tamx}px;height:${this.tamy}px;background-color:${this.cor};`);
         if (this.px > (window.innerWidth - 250) || this.py > window.innerHeight
-            || this.py < 0 || (this.px < 0 - this.tamx && this.py > 500)) {
+            || this.py < 0 - this.tamy || this.px < 0 - this.tamx ) {
             this.remover()
         }
     }
@@ -172,6 +245,24 @@ class Baloes {
         this.eu.remove();
     }
 }
+
+const imagemFases = () => {
+    if (fase <= 5) {
+        document.body.style.setProperty(
+            "--fundo",
+            "url('./imagens/background-fase01.jpeg')"
+        );
+    }
+
+    if (fase >= 6 && fase <= 10) {
+        document.body.style.setProperty(
+            "--fundo",
+            "url('./imagens/background-fase06.jpeg')"
+        );
+    }
+}
+
+imagemFases();
 
 let balao1 = null;
 
@@ -210,6 +301,13 @@ const detectarClique = (event, cor) => {
 };
 
 document.addEventListener("click", (event) => {
+    const x = event.clientX;
+    const y = event.clientY;
+
+    botao2.innerHTML = "X: " + x + " Y: " + y;
+});
+
+document.addEventListener("click", (event) => {
     const selecionado = document.querySelector(".selecionado");
     if (selecionado) {
         const cor = getComputedStyle(selecionado).backgroundColor;
@@ -217,74 +315,196 @@ document.addEventListener("click", (event) => {
     }
 })
 
-const obstaculo1 = {
-    xMin: 0,
-    xMax: 396,
-    yMin: 43,
-    yMax: 90
+const obsFase01 = () => {
+    const obstaculo1 = {
+        xMin: 0,
+        xMax: 396,
+        yMin: 43,
+        yMax: 90
+    }
+
+    const obstaculo2 = {
+        xMin: 345,
+        xMax: 396,
+        yMin: 43,
+        yMax: 270
+    }
+
+    const obstaculo3 = {
+        xMin: 345,
+        xMax: 396,
+        yMin: 220,
+        yMax: 272
+    }
+
+    const obstaculo4 = {
+        xMin: 345,
+        xMax: 706,
+        yMin: 220,
+        yMax: 272
+    }
+
+    const obstaculo5 = {
+        xMin: 654,
+        xMax: 706,
+        yMin: 220,
+        yMax: 427
+    }
+
+    const obstaculo6 = {
+        xMin: 240,
+        xMax: 291,
+        yMin: 378,
+        yMax: 582
+    }
+
+    const obstaculo7 = {
+        xMin: 0,
+        xMax: 291,
+        yMin: 533,
+        yMax: 582
+    }
+
+    const obstaculo8 = {
+        xMin: 1122,
+        xMax: 1395,
+        yMin: 0,
+        yMax: 700
+    }
+
+    const obstaculos = [
+        obstaculo1,
+        obstaculo2,
+        obstaculo3,
+        obstaculo4,
+        obstaculo5,
+        obstaculo6,
+        obstaculo7,
+        obstaculo8
+    ];
+
+    return obstaculos;
 }
 
-const obstaculo2 = {
-    xMin: 345,
-    xMax: 396,
-    yMin: 43,
-    yMax: 270
-}
+const obsFase06 = () => {
+    const obstaculo1 = {
+        xMin: 0,
+        xMax: 174,
+        yMin: 264,
+        yMax: 313
+    }
 
-const obstaculo3 = {
-    xMin: 345,
-    xMax: 396,
-    yMin: 220,
-    yMax: 272
-}
+    const obstaculo2 = {
+        xMin: 125,
+        xMax: 174,
+        yMin: 14,
+        yMax: 313
+    }
 
-const obstaculo4 = {
-    xMin: 345,
-    xMax: 706,
-    yMin: 220,
-    yMax: 272
-}
+    const obstaculo3 = {
+        xMin: 125,
+        xMax: 332,
+        yMin: 14,
+        yMax: 63
+    }
 
-const obstaculo5 = {
-    xMin: 654,
-    xMax: 706,
-    yMin: 220,
-    yMax: 427
-}
+    const obstaculo4 = {
+        xMin: 283,
+        xMax: 332,
+        yMin: 14,
+        yMax: 366
+    }
 
-const obstaculo6 = {
-    xMin: 240,
-    xMax: 291,
-    yMin: 378,
-    yMax: 582
-}
+    const obstaculo5 = {
+        xMin: 171,
+        xMax: 332,
+        yMin: 317,
+        yMax: 366
+    }
 
-const obstaculo7 = {
-    xMin: 0,
-    xMax: 291,
-    yMin: 533,
-    yMax: 582
-}
+    const obstaculo6 = {
+        xMin: 171,
+        xMax: 222,
+        yMin: 317,
+        yMax: 612
+    }
 
-const obstaculo8 = {
-    xMin: 1122,
-    xMax: 1395,
-    yMin: 0,
-    yMax: 700
-}
+    const obstaculo7 = {
+        xMin: 171,
+        xMax: 745,
+        yMin: 564,
+        yMax: 612
+    }
 
-const obstaculos = [
-    obstaculo1,
-    obstaculo2,
-    obstaculo3,
-    obstaculo4,
-    obstaculo5,
-    obstaculo6,
-    obstaculo7,
-    obstaculo8
-];
+    const obstaculo8 = {
+        xMin: 696,
+        xMax: 745,
+        yMin: 464,
+        yMax: 612
+    }
+
+    const obstaculo9 = {
+        xMin: 401,
+        xMax: 745,
+        yMin: 464,
+        yMax: 513
+    }
+
+    const obstaculo10 = {
+        xMin: 401,
+        xMax: 450,
+        yMin: 308,
+        yMax: 513
+    }
+
+    const obstaculo11 = {
+        xMin: 401,
+        xMax: 752,
+        yMin: 308,
+        yMax: 359
+    }
+
+    const obstaculo12 = {
+        xMin: 703,
+        xMax: 752,
+        yMin: 14,
+        yMax: 359
+    }
+
+    const obstaculo13 = {
+        xMin: 1122,
+        xMax: 1395,
+        yMin: 0,
+        yMax: 700
+    }
+
+     const obstaculos = [
+        obstaculo1,
+        obstaculo2,
+        obstaculo3,
+        obstaculo4,
+        obstaculo5,
+        obstaculo6,
+        obstaculo7,
+        obstaculo8,
+        obstaculo9,
+        obstaculo10,
+        obstaculo11,
+        obstaculo12,
+        obstaculo13
+    ];
+
+    return obstaculos;
+}
 
 const colidiu = (x, y) => {
+    let obstaculos;
+    if(fase <= 5) {
+        obstaculos = obsFase01()
+    }
+    else if(fase >= 6 && fase <= 10) {
+        obstaculos = obsFase06()
+    }
     for (let i = 0; i < obstaculos.length; i++) {
         const obstaculo = obstaculos[i];
 
@@ -318,5 +538,7 @@ setInterval(() => {
     const baloesNoRange = atiradores.some((atirador) => {
         return atirador.verificarBaloes(baloes);
     });
-    botao2.innerHTML = baloesNoRange;
+    // botao2.innerHTML = baloesNoRange;
 }, 1000)
+
+//=====REMOVI O CODIGO DE VERIFICAR BALOES==============
