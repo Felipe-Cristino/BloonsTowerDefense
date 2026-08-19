@@ -11,7 +11,7 @@ const personagemColide = [];
 const atiradores = [];
 const baloes = [];
 let atirador1 = null;
-let fase = 11;
+let fase = 16;
 
 class Personagem {
     constructor(px, py) {
@@ -104,15 +104,24 @@ class Baloes {
         this.tamx = arrayTamanhoBaloesx[vidas - 1];
         this.tamy = arrayTamanhoBaloesy[vidas - 1];
         this.vel = velBaloes[vidas - 1];
-        this.px = 0;
-        if(fase <= 5) {
+        if (fase <= 5) {
+            this.px = 0;
             this.py = 35;
+            this.dirx = 1;
+            this.diry = 0;
         }
-        else if(fase >= 6 && fase <= 10) {
+        else if (fase >= 6 && fase <= 10) {
+            this.px = 0;
             this.py = 264;
+            this.dirx = 1;
+            this.diry = 0;
         }
-        this.dirx = 1;
-        this.diry = 0;
+        else if (fase >= 11 && fase <= 15) {
+            this.px = 163;
+            this.py = 668;
+            this.dirx = 0;
+            this.diry = -1;
+        }
         this.id = Date.now() + "_" + Math.floor(Math.random() * 1000000000);
         this.desenhar();
         this.controle = setInterval(() => this.controlar(), 10);
@@ -129,102 +138,158 @@ class Baloes {
         body.appendChild(div);
     }
 
-    controleBordasFase01() {
-        if (this.py > 30 && this.py < 40 && this.px > 346 && this.px < 356) {
+    controleBordasMapa01() {
+        if (this.py > 30 && this.py < 40 && this.px > 365 && this.px < 375) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 346 && this.px < 356 && this.py > 221 && this.py < 231) {
+        if (this.px > 365 && this.px < 375 && this.py > 221 && this.py < 231) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > 210 && this.py < 230 && this.px > 665 && this.px < 675) {
+        if (this.py > 210 && this.py < 230 && this.px > 690 && this.px < 700) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 665 && this.px < 675 && this.py > 382 && this.py < 392) {
+        if (this.px > 690 && this.px < 700 && this.py > 382 && this.py < 392) {
             this.dirx = -1;
             this.diry = 0;
         }
 
-        if (this.py > 382 && this.py < 392 && this.px > 228 && this.px < 238) {
+        if (this.py > 382 && this.py < 392 && this.px > 247 && this.px < 257) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 228 && this.px < 238 && this.py > 545 && this.py < 555) {
+        if (this.px > 247 && this.px < 257 && this.py > 545 && this.py < 555) {
             this.dirx = -1;
             this.diry = 0;
         }
     }
 
-    controleBordasFase06() {
-        if (this.py > 259 && this.py < 269 && this.px > 115 && this.px < 125) {
+    controleBordasMapa02() {
+        if (this.py > 259 && this.py < 269 && this.px > 138 && this.px < 148) {
             this.dirx = 0;
             this.diry = -1;
         }
 
-        if (this.px > 115 && this.px < 125 && this.py > -5 && this.py < 5) {
+        if (this.px > 138 && this.px < 148 && this.py > -5 && this.py < 5) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > -5 && this.py < 5 && this.px > 280 && this.px < 290) {
+        if (this.py > -5 && this.py < 5 && this.px > 300 && this.px < 310) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 280 && this.px < 290 && this.py > 320 && this.py < 330) {
+        if (this.px > 300 && this.px < 310 && this.py > 320 && this.py < 330) {
             this.dirx = -1;
             this.diry = 0;
         }
 
-        if (this.py > 320 && this.py < 330 && this.px > 155 && this.px < 165) {
+        if (this.py > 320 && this.py < 330 && this.px > 178 && this.px < 188) {
             this.dirx = 0;
             this.diry = 1;
         }
 
-        if (this.px > 155 && this.px < 165 && this.py > 575 && this.py < 585) {
+        if (this.px > 178 && this.px < 188 && this.py > 575 && this.py < 585) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > 575 && this.py < 585 && this.px > 710 && this.px < 720) {
+        if (this.py > 575 && this.py < 585 && this.px > 730 && this.px < 740) {
             this.dirx = 0;
             this.diry = -1;
         }
 
-        if (this.px > 710 && this.px < 720 && this.py > 462 && this.py < 472) {
+        if (this.px > 730 && this.px < 740 && this.py > 462 && this.py < 472) {
             this.dirx = -1;
             this.diry = 0;
         }
 
-        if (this.py > 462 && this.py < 472 && this.px > 390 && this.px < 400) {
+        if (this.py > 462 && this.py < 472 && this.px > 416 && this.px < 426) {
             this.dirx = 0;
             this.diry = -1;
         }
 
-        if (this.px > 390 && this.px < 400 && this.py > 305 && this.py < 315) {
+        if (this.px > 416 && this.px < 426 && this.py > 305 && this.py < 315) {
             this.dirx = 1;
             this.diry = 0;
         }
 
-        if (this.py > 305 && this.py < 315 && this.px > 717 && this.px < 727) {
+        if (this.py > 305 && this.py < 315 && this.px > 737 && this.px < 747) {
             this.dirx = 0;
             this.diry = -1;
+        }
+    }
+
+    controleBordasMapa03() {
+        if (this.px > 158 && this.px < 168 && this.py > 515 && this.py < 525) {
+            this.dirx = 1;
+            this.diry = 0;
+        }
+
+        if (this.py > 515 && this.py < 525 && this.px > 426 && this.px < 436) {
+            this.dirx = 0;
+            this.diry = -1;
+        }
+
+        if (this.px > 426 && this.px < 436 && this.py > 355 && this.py < 365) {
+            this.dirx = -1;
+            this.diry = 0;
+        }
+
+        if (this.py > 355 && this.py < 365 && this.px > 53 && this.px < 63) {
+            this.dirx = 0;
+            this.diry = -1;
+        }
+
+        if (this.px > 53 && this.px < 63 && this.py > 63 && this.py < 73) {
+            this.dirx = 1;
+            this.diry = 0;
+        }
+
+        if (this.py > 63 && this.py < 73 && this.px > 926 && this.px < 936) {
+            this.dirx = 0;
+            this.diry = 1;
+        }
+
+        if (this.px > 926 && this.px < 936 && this.py > 253 && this.py < 263) {
+            this.dirx = -1;
+            this.diry = 0;
+        }
+
+        if (this.py > 253 && this.py < 263 && this.px > 553 && this.px < 563) {
+            this.dirx = 0;
+            this.diry = 1;
+        }
+
+        if (this.px > 553 && this.px < 563 && this.py > 473 && this.py < 483) {
+            this.dirx = 1;
+            this.diry = 0;
+        }
+
+        if (this.py > 473 && this.py < 483 && this.px > 924 && this.px < 934) {
+            this.dirx = 0;
+            this.diry = 1;
         }
     }
 
     controle_bordas() {
         if (fase <= 5) {
-            this.controleBordasFase01();
+            this.controleBordasMapa01();
         }
 
         if (fase >= 6 && fase <= 10) {
-            this.controleBordasFase06();
+            this.controleBordasMapa02();
+        }
+
+        if (fase >= 11 && fase <= 15) {
+            this.controleBordasMapa03();
         }
     }
 
@@ -235,7 +300,7 @@ class Baloes {
         this.eu.setAttribute("style", `left:${this.px}px;top:${this.py}px;
         width:${this.tamx}px;height:${this.tamy}px;background-color:${this.cor};`);
         if (this.px > (window.innerWidth - 250) || this.py > window.innerHeight
-            || this.py < 0 - this.tamy || this.px < 0 - this.tamx ) {
+            || this.py < 0 - this.tamy || this.px < 0 - this.tamx) {
             this.remover()
         }
     }
@@ -272,6 +337,13 @@ const imagemFases = () => {
         document.body.style.setProperty(
             "--fundo",
             "url('./imagens/background-mapa04.jpeg')"
+        );
+    }
+
+    if (fase >= 21 && fase <= 25) {
+        document.body.style.setProperty(
+            "--fundo",
+            "url('./imagens/background-mapa05.jpeg')"
         );
     }
 }
@@ -329,52 +401,52 @@ document.addEventListener("click", (event) => {
     }
 })
 
-const obsFase01 = () => {
+const obsMapa01 = () => {
     const obstaculo1 = {
         xMin: 0,
-        xMax: 388,
+        xMax: 411,
         yMin: 30,
         yMax: 81
     }
 
     const obstaculo2 = {
-        xMin: 336,
-        xMax: 388,
+        xMin: 359,
+        xMax: 411,
         yMin: 30,
         yMax: 267
     }
 
     const obstaculo3 = {
-        xMin: 336,
-        xMax: 711,
+        xMin: 359,
+        xMax: 734,
         yMin: 215,
         yMax: 267
     }
 
     const obstaculo4 = {
-        xMin: 658,
-        xMax: 711,
+        xMin: 680,
+        xMax: 734,
         yMin: 214,
         yMax: 430
     }
 
     const obstaculo5 = {
-        xMin: 226,
-        xMax: 711,
+        xMin: 250,
+        xMax: 734,
         yMin: 380,
         yMax: 430
     }
 
     const obstaculo6 = {
-        xMin: 226,
-        xMax: 280,
+        xMin: 250,
+        xMax: 303,
         yMin: 381,
         yMax: 592
     }
 
     const obstaculo7 = {
         xMin: 0,
-        xMax: 280,
+        xMax: 303,
         yMin: 539,
         yMax: 593
     }
@@ -388,7 +460,7 @@ const obsFase01 = () => {
 
     const obstaculo9 = {
         xMin: 0,
-        xMax: 220,
+        xMax: 242,
         yMin: 112,
         yMax: 381
     }
@@ -409,87 +481,87 @@ const obsFase01 = () => {
     return obstaculos;
 }
 
-const obsFase06 = () => {
+const obsMapa02 = () => {
     const obstaculo1 = {
         xMin: 0,
-        xMax: 160,
+        xMax: 182,
         yMin: 260,
         yMax: 311
     }
 
     const obstaculo2 = {
-        xMin: 108,
-        xMax: 159,
+        xMin: 130,
+        xMax: 182,
         yMin: 0,
         yMax: 311
     }
 
     const obstaculo3 = {
-        xMin: 125,
-        xMax: 332,
+        xMin: 130,
+        xMax: 346,
         yMin: 0,
         yMax: 51
     }
 
     const obstaculo4 = {
-        xMin: 271,
-        xMax: 323,
+        xMin: 294,
+        xMax: 346,
         yMin: 0,
         yMax: 368
     }
 
     const obstaculo5 = {
-        xMin: 155,
-        xMax: 323,
+        xMin: 178,
+        xMax: 346,
         yMin: 316,
         yMax: 368
     }
 
     const obstaculo6 = {
-        xMin: 155,
-        xMax: 208,
+        xMin: 178,
+        xMax: 232,
         yMin: 318,
         yMax: 623
     }
 
     const obstaculo7 = {
-        xMin: 155,
-        xMax: 751,
+        xMin: 178,
+        xMax: 774,
         yMin: 573,
         yMax: 623
     }
 
     const obstaculo8 = {
-        xMin: 700,
-        xMax: 752,
+        xMin: 723,
+        xMax: 774,
         yMin: 468,
         yMax: 624
     }
 
     const obstaculo9 = {
-        xMin: 394,
-        xMax: 752,
+        xMin: 417,
+        xMax: 774,
         yMin: 468,
         yMax: 519
     }
 
     const obstaculo10 = {
-        xMin: 394,
-        xMax: 445,
+        xMin: 417,
+        xMax: 468,
         yMin: 306,
         yMax: 519
     }
 
     const obstaculo11 = {
-        xMin: 395,
-        xMax: 760,
+        xMin: 417,
+        xMax: 783,
         yMin: 307,
         yMax: 360
     }
 
     const obstaculo12 = {
-        xMin: 708,
-        xMax: 760,
+        xMin: 732,
+        xMax: 783,
         yMin: 0,
         yMax: 360
     }
@@ -502,27 +574,27 @@ const obsFase06 = () => {
     }
 
     const obstaculo14 = {
-        xMin: 208,
-        xMax: 325,
+        xMin: 232,
+        xMax: 348,
         yMin: 467,
         yMax: 572
     }
 
     const obstaculo15 = {
-        xMin: 56,
-        xMax: 108,
+        xMin: 77,
+        xMax: 130,
         yMin: 160,
         yMax: 260
     }
 
-     const obstaculo16 = {
-        xMin: 632,
-        xMax: 708,
+    const obstaculo16 = {
+        xMin: 656,
+        xMax: 731,
         yMin: 195,
         yMax: 307
     }
 
-     const obstaculos = [
+    const obstaculos = [
         obstaculo1,
         obstaculo2,
         obstaculo3,
@@ -544,13 +616,120 @@ const obsFase06 = () => {
     return obstaculos;
 }
 
+const obsMapa03 = () => {
+    
+    const obstaculo1 = {
+        xMin: 154,
+        xMax: 208,
+        yMin: 520,
+        yMax: 668
+    }
+
+    const obstaculo2 = {
+        xMin: 154,
+        xMax: 472,
+        yMin: 520,
+        yMax: 574
+    }
+
+    const obstaculo3 = {
+        xMin: 418,
+        xMax: 472,
+        yMin: 358,
+        yMax: 574
+    }
+
+    const obstaculo4 = {
+        xMin: 55,
+        xMax: 472,
+        yMin: 358,
+        yMax: 410
+    }
+
+    const obstaculo5 = {
+        xMin: 55,
+        xMax: 108,
+        yMin: 67,
+        yMax: 410
+    }
+
+    const obstaculo6 = {
+        xMin: 55,
+        xMax: 972,
+        yMin: 67,
+        yMax: 119
+    }
+
+    const obstaculo7 = {
+        xMin: 919,
+        xMax: 972,
+        yMin: 65,
+        yMax: 302
+    }
+
+    const obstaculo8 = {
+        xMin: 554,
+        xMax: 972,
+        yMin: 249,
+        yMax: 302
+    }
+
+    const obstaculo9 = {
+        xMin: 554,
+        xMax: 607,
+        yMin: 249,
+        yMax: 520
+    }
+
+    const obstaculo10 = {
+        xMin: 554,
+        xMax: 970,
+        yMin: 467,
+        yMax: 520
+    }
+
+    const obstaculo11 = {
+        xMin: 916,
+        xMax: 970,
+        yMin: 467,
+        yMax: 668
+    }
+
+    const obstaculo12 = {
+        xMin: 1146,
+        xMax: 1395,
+        yMin: 0,
+        yMax: 690
+    }
+
+    const obstaculos = [
+        obstaculo1,
+        obstaculo2,
+        obstaculo3,
+        obstaculo4,
+        obstaculo5,
+        obstaculo6,
+        obstaculo7,
+        obstaculo8,
+        obstaculo9,
+        obstaculo10,
+        obstaculo11,
+        obstaculo12
+    ];
+
+    return obstaculos;
+}
+
 const colidiu = (x, y) => {
     let obstaculos;
-    if(fase <= 5) {
-        obstaculos = obsFase01()
+    if (fase <= 5) {
+        obstaculos = obsMapa01()
     }
-    else if(fase >= 6 && fase <= 10) {
-        obstaculos = obsFase06()
+    else if (fase >= 6 && fase <= 10) {
+        obstaculos = obsMapa02()
+    }
+    else if (fase >= 11 && fase <= 15) {
+        obstaculos = obsMapa03()
     }
     for (let i = 0; i < obstaculos.length; i++) {
         const obstaculo = obstaculos[i];
